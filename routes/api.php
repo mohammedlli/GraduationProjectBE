@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CarController;
-use App\Http\Controllers\StageController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -53,5 +52,3 @@ Route::prefix('users')->group(function () {
     Route::get('/{id}', [UserController::class, 'show']);
     Route::delete('/{id}', [UserController::class, 'delete']);
 });
-
-Route::get('stage', [StageController::class, 'getAll']);

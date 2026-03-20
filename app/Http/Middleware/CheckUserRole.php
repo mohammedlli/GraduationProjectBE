@@ -16,6 +16,10 @@ class CheckUserRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-       return $next($request);
+        if(Auth::user()->role === 'DOCTOR')
+        return $next($request);
+    return response()->json([
+        'message' => 'unauthorized'
+    ],403);
     }
 }
