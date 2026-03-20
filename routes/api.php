@@ -18,9 +18,9 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 
 
-Route::prefix('taska')->middleware('auth:sanctum')->group(function () {
+Route::prefix('task')->middleware('auth:sanctum')->group(function () {
 
-    Route::post('', [TaskController::class, 'store'])->middleware('checkUser');
+    Route::post('', [TaskController::class, 'store']);
 
 
     Route::get('', [TaskController::class, 'getAll'])->middleware('checkUser');
@@ -36,7 +36,13 @@ Route::prefix('taska')->middleware('auth:sanctum')->group(function () {
 
 
 
-
+Route::prefix('answer')->group(function () {
+    Route::post('', [AnswerController::class, 'store']);
+    Route::get('', [AnswerController::class, 'getAll']);
+    Route::put('/{id}', [AnswerController::class, 'update']);
+    Route::get('/{id}', [AnswerController::class, 'getById']);
+    Route::delete('/{id}', [AnswerController::class, 'delete']);
+});
 
 
 Route::prefix('users')->group(function () {
@@ -48,4 +54,3 @@ Route::prefix('users')->group(function () {
 });
 
 Route::get('stage', [StageController::class, 'getAll']);
-Route::post('task', [TaskController::class, 'store']);
