@@ -36,13 +36,7 @@ Route::prefix('taska')->middleware('auth:sanctum')->group(function () {
 
 
 
-Route::prefix('answer')->group(function () {
-    Route::post('', [AnswerController::class, 'store']);
-    Route::get('', [AnswerController::class, 'getAll']);
-    Route::put('/{id}', [AnswerController::class, 'update']);
-    Route::get('/{id}', [AnswerController::class, 'getById']);
-    Route::delete('/{id}', [AnswerController::class, 'delete']);
-});
+
 
 
 Route::prefix('users')->group(function () {
