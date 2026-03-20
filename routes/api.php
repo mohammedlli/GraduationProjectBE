@@ -18,21 +18,21 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 
 
-Route::prefix('task')->group(function () {
+// Route::prefix('task')->group(function () {
 
-    Route::post('', [TaskController::class, 'store']);
-
-
-    Route::get('', [TaskController::class, 'getAll']);
-
-    Route::put('/{id}', [TaskController::class, 'update']);
+//     Route::post('', [TaskController::class, 'store']);
 
 
-    Route::get('/{id}', [TaskController::class, 'show']);
+//     Route::get('', [TaskController::class, 'getAll']);
 
-    Route::delete('/{id}', [TaskController::class, 'delete']);
+//     Route::put('/{id}', [TaskController::class, 'update']);
 
-});
+
+//     Route::get('/{id}', [TaskController::class, 'show']);
+
+//     Route::delete('/{id}', [TaskController::class, 'delete']);
+
+// });
 
 
 
