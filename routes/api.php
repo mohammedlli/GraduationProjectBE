@@ -20,7 +20,7 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 Route::prefix('task')->middleware('auth:sanctum')->group(function () {
 
-    Route::post('', [TaskController::class, 'store']);
+    Route::post('', [TaskController::class, 'store'])->middleware('checkUser');
 
 
     Route::get('', [TaskController::class, 'getAll'])->middleware('checkUser');
