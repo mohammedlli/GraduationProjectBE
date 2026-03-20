@@ -18,7 +18,9 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 
 
-Route::prefix('task')->group(function () {
+Route::prefix('task')->middleware(function($request, $next){
+    return $next($request); // يسمح بمرور كل الطلبات
+})->group(function () {
     Route::post('', [TaskController::class, 'store']);
     Route::get('', [TaskController::class, 'getAll']);
     Route::put('/{id}', [TaskController::class, 'update']);
