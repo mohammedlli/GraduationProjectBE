@@ -18,8 +18,7 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 
 
-
-Route::prefix('task')->middleware('auth:sanctum')->group(function () {
+Route::prefix('taska')->middleware('auth:sanctum')->group(function () {
 
     Route::post('', [TaskController::class, 'store'])->middleware('checkUser');
 
@@ -55,3 +54,4 @@ Route::prefix('users')->group(function () {
 });
 
 Route::get('stage', [StageController::class, 'getAll']);
+Route::post('task', [TaskController::class, 'store']);
