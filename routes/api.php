@@ -19,20 +19,20 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 
 
-Route::prefix('task')->group(function () {
+Route::prefix('task')->middleware('auth:sanctum')->group(function () {
 
-    Route::post('', [TaskController::class, 'store']);
-
-
-    Route::get('', [TaskController::class, 'getAll']);
-
-    Route::put('/{id}', [TaskController::class, 'update']);
+    Route::post('', [TaskController::class, 'store'])->middleware('checkUser');
 
 
-    Route::get('/{id}', [TaskController::class, 'show']);
+    Route::get('', [TaskController::class, 'getAll'])->middleware('checkUser');
 
-    Route::delete('/{id}', [TaskController::class, 'delete']);
+    Route::put('/{id}', [TaskController::class, 'update'])
+        ->middleware('checkUser');
 
+    Route::get('/{id}', [TaskController::class, 'show'])->middleware('checkUser');
+
+    Route::delete('/{id}', [TaskController::class, 'delete'])
+        ->middleware('checkUser');
 });
 
 
