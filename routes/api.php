@@ -18,15 +18,23 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 
 
-Route::prefix('task')->middleware(function($request, $next){
-    return $next($request); // يسمح بمرور كل الطلبات
-})->group(function () {
-    Route::post('', [TaskController::class, 'store']);
-    Route::get('', [TaskController::class, 'getAll']);
-    Route::put('/{id}', [TaskController::class, 'update']);
-    Route::get('/{id}', [TaskController::class, 'show']);
-    Route::delete('/{id}', [TaskController::class, 'destroy']);
+
+Route::prefix('task')->middleware('auth:sanctum')->group(function () {
+
+    Route::post('', [TaskController::class, 'store'])->middleware('checkUser');
+
+
+    Route::get('', [TaskController::class, 'getAll'])->middleware('checkUser');
+
+    Route::put('/{id}', [TaskController::class, 'update'])
+        ->middleware('checkUser');
+
+    Route::get('/{id}', [TaskController::class, 'show'])->middleware('checkUser');
+
+    Route::delete('/{id}', [TaskController::class, 'delete'])
+        ->middleware('checkUser');
 });
+
 
 
 Route::prefix('answer')->group(function () {
