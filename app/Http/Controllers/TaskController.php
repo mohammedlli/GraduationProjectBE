@@ -23,7 +23,7 @@ class TaskController extends Controller
      public function update(Request $request , $id){
 
      $task = Task::findOrFail($id);
-        $task ->update([$request->all()]);
+        $task->update($request->all());
         return response()->json($task , 200);
     }
 
