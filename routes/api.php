@@ -38,12 +38,12 @@ Route::prefix('task')->middleware('auth:sanctum')->group(function () {
 
 
 Route::prefix('answer')->group(function () {
+    Route::get('/getByTask/{id}', [AnswerController::class, 'getAllByTaskId']);
     Route::post('', [AnswerController::class, 'store']);
     Route::get('', [AnswerController::class, 'getAll']);
     Route::put('/{id}', [AnswerController::class, 'update']);
     Route::get('/{id}', [AnswerController::class, 'getById']);
     Route::delete('/{id}', [AnswerController::class, 'delete']);
-    Route::get('/getByTask/{id}', [AnswerController::class, 'getAllByTaskId']);
 });
 
 
