@@ -42,4 +42,9 @@ class AnswerController extends Controller
         $answer = Answer::all();
         return response()->json($answer , 200);
     }
+
+      public function getAllByTaskId($taskId){
+    $answers = Answer::where('task_id', $taskId)->get();
+    return response()->json($answers);
+    }
 }
