@@ -43,7 +43,7 @@ Route::prefix('answer')->group(function () {
     Route::put('/{id}', [AnswerController::class, 'update']);
     Route::get('/{id}', [AnswerController::class, 'getById']);
     Route::delete('/{id}', [AnswerController::class, 'delete']);
-    Route::get('/{id}', [AnswerController::class, 'getAllByTaskId']);
+    Route::get('/getByTask/{id}', [AnswerController::class, 'getAllByTaskId']);
 });
 
 
