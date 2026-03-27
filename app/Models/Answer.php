@@ -13,6 +13,7 @@ protected $fillable = [
         'answer',
         'task_id',
         'user_id',
+        'file_path',
     ];
 
 

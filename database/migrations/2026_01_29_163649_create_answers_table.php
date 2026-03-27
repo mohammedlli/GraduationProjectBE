@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('answer');
             $table->foreignId('task_id')->constrained('tasks')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+             $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('answers');
+        Schema::table('answers', function (Blueprint $table) {
+        $table->dropColumn('file_path');
+    });
     }
 };
