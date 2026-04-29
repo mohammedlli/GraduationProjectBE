@@ -15,26 +15,19 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
+Route::prefix('task')->group(function () {
+
+    Route::post('', [TaskController::class, 'store']);
 
 
+    Route::get('', [TaskController::class, 'getAll']);
 
-Route::prefix('task')->middleware('auth:sanctum')->group(function () {
+    Route::put('/{id}', [TaskController::class, 'update']);
 
-    Route::post('', [TaskController::class, 'store'])->middleware('checkUser');
+    Route::get('/{id}', [TaskController::class, 'show']);
 
-
-    Route::get('', [TaskController::class, 'getAll'])->middleware('checkUser');
-
-    Route::put('/{id}', [TaskController::class, 'update'])
-        ->middleware('checkUser');
-
-    Route::get('/{id}', [TaskController::class, 'show'])->middleware('checkUser');
-
-    Route::delete('/{id}', [TaskController::class, 'delete'])
-        ->middleware('checkUser');
+    Route::delete('/{id}', [TaskController::class, 'delete']);
 });
-
-
 
 Route::prefix('answer')->group(function () {
     Route::get('/getByTask/{id}', [AnswerController::class, 'getAllByTaskId']);
@@ -44,11 +37,8 @@ Route::prefix('answer')->group(function () {
     Route::post('', [AnswerController::class, 'store']);
     Route::get('', [AnswerController::class, 'getAll']);
     Route::put('/{id}', [AnswerController::class, 'update']);
-
     Route::delete('/{id}', [AnswerController::class, 'delete']);
-
 });
-
 
 Route::prefix('users')->group(function () {
     Route::post('', [UserController::class, 'store']);
